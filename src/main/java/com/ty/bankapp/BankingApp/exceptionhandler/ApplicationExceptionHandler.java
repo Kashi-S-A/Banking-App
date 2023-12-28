@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ty.bankapp.BankingApp.dto.Bank;
+import com.ty.bankapp.BankingApp.dto.Employee;
+import com.ty.bankapp.BankingApp.exception.EmployeeNotFoundException;
 import com.ty.bankapp.BankingApp.exception.IdNotFoundException;
 import com.ty.bankapp.BankingApp.responseStructure.ResponseStructure;
 
@@ -20,5 +22,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler{
 		responseStructure.setMessage(exception.getMessage());
 		
 		return new ResponseEntity<ResponseStructure<Bank>>(responseStructure,HttpStatus.CREATED);
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ResponseStructure<Employee>> catchEmployeeNotFoundException(EmployeeNotFoundException exception) {
+		ResponseStructure<Employee> responseStructure=new ResponseStructure<>();
+		responseStructure.setStatusCode(HttpStatus.CREATED.value());
+		responseStructure.setMessage(exception.getMessage());
+		
+		return new ResponseEntity<ResponseStructure<Employee>>(responseStructure,HttpStatus.CREATED);
 	}
 }

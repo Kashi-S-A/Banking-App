@@ -31,8 +31,9 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String empId;
 	private String empName;
-	@Column()
+	@Column(unique = true)
 	private long phoneNumber;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	private String gender;
