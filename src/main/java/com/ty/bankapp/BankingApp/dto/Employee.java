@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 import com.ty.bankapp.BankingApp.util.EmployeeRole;
 import com.ty.bankapp.BankingApp.util.EmployeeStatus;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -25,10 +28,10 @@ import lombok.Setter;
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "empId")
-	@SequenceGenerator(name = "empId",initialValue = 100)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String empId;
 	private String empName;
+	@Column()
 	private long phoneNumber;
 	private String email;
 	private String password;
@@ -36,6 +39,11 @@ public class Employee {
 	private LocalDate localDate;
 	private LocalDateTime dateOfJoining;
 	
+	@OneToOne
+	private Address address;
+	
+	@ManyToOne
+	private Branch branch;
 	
 	private EmployeeRole employeeRole;
 	
