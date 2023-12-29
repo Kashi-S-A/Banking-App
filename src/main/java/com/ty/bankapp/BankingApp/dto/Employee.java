@@ -10,12 +10,8 @@ import com.ty.bankapp.BankingApp.util.EmployeeStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +24,7 @@ import lombok.Setter;
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/* @GeneratedValue(strategy = GenerationType.IDENTITY) */
 	private String empId;
 	private String empName;
 	@Column(unique = true)
@@ -37,16 +33,13 @@ public class Employee {
 	private String email;
 	private String password;
 	private String gender;
-	private LocalDate localDate;
-	private LocalDateTime dateOfJoining;
-	
+	private LocalDateTime createdDateTime;
+	private LocalDate dateOfJoining;
+
 	@OneToOne
 	private Address address;
-	
-	@ManyToOne
-	private Branch branch;
-	
+
 	private EmployeeRole employeeRole;
-	
+
 	private EmployeeStatus employeeStatus;
 }
