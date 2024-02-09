@@ -1,5 +1,7 @@
 package com.ty.bankapp.BankingApp.dto;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Component
 public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,4 +20,6 @@ public class Address {
 	private String city;
 	private String country;
 	private String state;
+	
+	
 }
